@@ -1,0 +1,227 @@
+:root {
+    --bg-color: #030305;
+    --card-bg: #0a0a0a;
+    --input-bg: #111111;
+    --border-color: #1f1f1f;
+    --accent-color: #00bfff;
+    /* Cyan/Electric Blue */
+    --text-main: #ffffff;
+    --text-muted: #52525b;
+    --font-family: 'Inter', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-family);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: radial-gradient(circle at 50% 0%, #111827 0%, #030305 60%);
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+    transform: translateY(-13px);
+    /* Adjusted: moved up 3px (total -13px) */
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.logo-container {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    transform: translateX(-5px);
+    /* Move logo 5px to the left */
+}
+
+.logo-img {
+    height: auto;
+    /* Significantly larger based on user feedback/reference */
+    width: 500px;
+    object-fit: contain;
+}
+
+header h1 {
+    font-size: 3rem;
+    /* text-5xl is usually 3rem */
+    font-weight: 700;
+    /* All bold as requested */
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    /* tracking-tight */
+    color: var(--text-main);
+    text-transform: none;
+    /* Override parent's uppercase to show "Lead Scraper" */
+}
+
+.highlight {
+    background: linear-gradient(to right, #00bfff, #ffffff);
+    /* from-kinetic-blue to-white */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+header p {
+    color: #64748b;
+    /* text-slate-500 */
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    /* font-mono */
+    font-size: 0.875rem;
+    /* text-sm */
+    letter-spacing: 0.1em;
+    /* tracking-widest */
+    text-transform: uppercase;
+    font-weight: 400;
+    /* reset weight for mono */
+}
+
+.card {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    position: relative;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.accent-bar {
+    width: 4px;
+    height: 24px;
+    background-color: var(--accent-color);
+    margin-right: 12px;
+    border-radius: 2px;
+}
+
+.card-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+input {
+    width: 100%;
+    padding: 1rem;
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-main);
+    font-size: 0.9rem;
+    font-family: var(--font-family);
+    transition: border-color 0.2s;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+input::placeholder {
+    color: var(--text-muted);
+}
+
+.hint {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.actions {
+    margin-top: 2.5rem;
+}
+
+.btn-primary {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 1rem 2rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.btn-primary:hover {
+    border-color: var(--accent-color);
+    background: rgba(0, 191, 255, 0.05);
+    /* Slight accent tint */
+    color: var(--accent-color);
+}
+
+.btn-primary.loading {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+.spinner {
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    border-top-color: var(--accent-color);
+    animation: spin 1s linear infinite;
+}
+
+.hidden {
+    display: none;
+}
+
+.status-msg {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

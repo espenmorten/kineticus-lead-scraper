@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Scraper Pro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="background"></div>
+
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Kineticus" class="logo-img">
+            </div>
+            <h1><span class="text-white">Lead</span> <span class="highlight">Scraper</span></h1>
+            <p>AI-POWERED LEAD GENERATION SYSTEM</p>
+        </header>
+
+        <main class="card">
+            <div class="card-header">
+                <div class="accent-bar"></div>
+                <h2>Directives</h2>
+            </div>
+            <form action="/scrape" method="POST" id="scrapeForm">
+                <div class="form-group">
+                    <label for="industry">Industry</label>
+                    <input type="text" id="industry" name="industry" placeholder="e.g. SaaS businesses, Software"
+                        required>
+                    <span class="hint">Maps to closest industry category automatically.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" name="location" placeholder="e.g. United States, New York"
+                        value="United States" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="job_titles">Job Titles</label>
+                    <input type="text" id="job_titles" name="job_titles" placeholder="e.g. CEO, Founder, VP Sales"
+                        required>
+                    <span class="hint">Comma-separated list.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="limit">Max Results</label>
+                    <input type="number" id="limit" name="limit" value="100" min="1" max="1000">
+                </div>
+
+                <div class="actions">
+                    <button type="submit" id="submitBtn" class="btn-primary">
+                        <span class="btn-text">Scrape & Download CSV</span>
+                        <div class="spinner hidden"></div>
+                    </button>
+                    <!-- Loading overlay for stricter feedback -->
+                    <div id="loadingStatus" class="status-msg hidden">Scraping leads... please wait (this may take 1-2
+                        mins)</div>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        const form = document.getElementById('scrapeForm');
+        const btn = document.getElementById('submitBtn');
+        const spinner = btn.querySelector('.spinner');
+        const btnText = btn.querySelector('.btn-text');
+        const status = document.getElementById('loadingStatus');
+
+        form.addEventListener('submit', (e) => {
+            // Show loading state
+            btn.classList.add('loading');
+            spinner.classList.remove('hidden');
+            btnText.textContent = 'Processing...';
+            status.classList.remove('hidden');
+
+            // Allow form submission to proceed normally to trigger download
+            // Note: In a pure SPA we'd use fetch, but form submit is simpler for file download response
+        });
+
+        // Basic restore on page show (if user goes back)
+        window.addEventListener('pageshow', () => {
+            btn.classList.remove('loading');
+            spinner.classList.add('hidden');
+            btnText.textContent = 'Scrape & Download CSV';
+            status.classList.add('hidden');
+        });
+    </script>
+</body>
+
+</html>
