@@ -2,3 +2,4 @@ gunicorn==23.0.0
 packaging==25.0
 flask==3.0.0
 apify-client==2.3.0
+python-dotenv==1.2.1
